@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+### Bio
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I'm into mathematics, computer science, bicycles, datasets, and visualizations. Oh, and Emacs, lets not forget Emacs.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[tim.dunbar@gmail.com](mailto:tim.dunbar@gmail.com)
