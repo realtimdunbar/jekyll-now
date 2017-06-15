@@ -13,6 +13,7 @@ I might try to make refactoring code a regular part of this blog.
 
 #### First a Recap
 Here is the textCleaner function
+
 ```{r textCleaner, echo=TRUE}
 textCleaner<-function(x){
   x<-scan(x, what="", sep="\n")
@@ -28,6 +29,7 @@ textCleaner<-function(x){
 }
 ```
 And here is the Classifier code
+
 ```{r bayesClassifier, echo=TRUE}
 bayesClassifier<-function(menClass, womenClass, document, menPrior, womenPrior){
   #gets counts of words in each class
@@ -60,6 +62,7 @@ bayesClassifier<-function(menClass, womenClass, document, menPrior, womenPrior){
 I will tackle the textCleaner part first.  My goal will be to make the code read like "well written prose" to quote Uncle Bob.  What this means is that all the comments I have in the code are only necessary because I did a terrible job writing the code in the first place.
 
 First, I must write a test that the current code passes so that I know I didn't break anything while refactoring.  For that we are going to need the *testthat* library.
+
 ```{r necessary_packages, echo=TRUE}
 #install.packages('testthat')
 library(testthat)
@@ -78,7 +81,7 @@ test_that('textCleaner cleans', {
 ```
 I ran the unit test against the original function to prove the unit test itself works.  The lack of an error means that I am ready to refactor.
 
-#### Refactored textCleaner function
+#### Refactored clean_text_file_and_return_data_frame function
 ```{r text_cleaner_refactored, echo=TRUE}
 
 # Here, I've broken out each of the seperate operations of the original code into their own function.
@@ -121,7 +124,8 @@ clean_text_file_and_return_data_frame<-function(file){
 }
 ```
 Now to use the test I wrote (and proved) earlier on the newly written function.
-```{r}
+
+```{r clean_text_file_and_return_data_frame unit test, echo=TRUE}
 test_that('textCleaner cleans', {
   test_file<-'~/naive-bayes-classifier/refactor_test_file.txt'
   
@@ -177,6 +181,7 @@ test_that('bayesClassifier classifies', {
 And I have passing unit tests.  A smart observer here will realize that I am using the womenQuote string to output "Male" and vice versa.  This is because of the way the Naive bayes Classifier works.  We need large training datasets for it to be accurate, such that the frequency of the words in each training data set that are also in the test data set are high.  Since that is not the case here I get the reversed output of what one would expect.  The accuracy of my Naive Bayes Classifier is beyond the scope of this blog post.  Time to refactor.
 
 #### Refactored bayes_classifier function
+
 ```{r bayes_classifier refactored, echo=TRUE}
 get_count<-function(df){
   return(nrow(df))
