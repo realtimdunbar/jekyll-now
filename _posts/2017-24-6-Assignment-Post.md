@@ -1,3 +1,10 @@
+---
+title: "Assignment 6 for Data Science at Scale - Coursera"
+author: "Tim Dunbar"
+date: "June 24 2017"
+---
+---------------
+
 ## Incidents of Larceny/Theft are more frequent on Saturdays and in the North East Quadrant of San Fransisco.
 
 This is to complete an assignment for my Data Science at Scale course.  Because, this is a rather simple post for a grade and I'm short on time there isn't a lot of analysis here.  However, there are visuals in this post (finally) including a cool choropleth chart that I've been meaning to try out.
