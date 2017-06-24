@@ -143,7 +143,7 @@ ggplot(dataCrime) +
   theme(legend.position="none", axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
-![](assignment6_files/figure-html/data_prep_all_crimes_filtered_column-1.png)<!-- -->
+![Image description](/images/crimeFrequency.png)<!-- -->
 In my opinion this is pretty predictable, it seems there are more incidents of Larceny/Theft then any other crime.
 
 Let's find out the day of week one is most likely to be stolen from.
@@ -167,7 +167,7 @@ ggplot(dataLT) +
   theme(legend.position="none")
 ```
 
-![](assignment6_files/figure-html/data_prep_assualt_column-1.png)<!-- -->
+![Image description](/images/theftDays.png)<!-- -->
 It appears that one has a slightly higher chance of being stolen from on a Saturday in San Fransisco (in 2014) than any other day.  Though Sunday comes close followed by Friday.  This makes sense in that the weekend seems to be the time when more assualts occur.  It is also interesting to note that Larceny/Theft occurances on Monday-Thursday remain pretty steady.
 
 Let's see if we can find out the places in San Fransisco to avoid on Saturdays.
@@ -196,5 +196,5 @@ mapPoints <- ggmap(map) +
 mapPoints
 ```
 
-![](assignment6_files/figure-html/unnamed-chunk-1-1.png)<!-- -->
+![Image description](/images/mapPoints.png)<!-- -->
 It seems that most of the reported thefts (in 2014) occured in that north east quadrant.  To bad my data set doesn't tell me what was stolen, it would be interesting to see how many of those were bike thefts (I dig bikes).
