@@ -4,7 +4,6 @@ author: "Tim Dunbar"
 date: "June 22 2017"
 ---
 ---------------
-
 ### Naive Bayes Classifier *Refactor*
 
 As the title suggests this post will be a refactoring of the code from the previous post.  I'm doing this partly because I recently watched all the videos from Robert Martin's (Uncle Bob's) Clean Code series but also because I think refactoring code is a good way to learn about it.
@@ -14,8 +13,7 @@ I might try to make refactoring code a regular part of this blog.
 #### First a Recap
 Here is the textCleaner function
 
-```{r textCleaner, echo=TRUE}
-
+```r
 textCleaner<-function(x){
   x<-scan(x, what="", sep="\n")
   #removes the author of the quote because I am only interested in male or female
@@ -27,13 +25,11 @@ textCleaner<-function(x){
   #formats as data frame
   x<-as.data.frame(unlist(x))
   return(x)
-  
 }
 ```
 And here is the Classifier code
 
-```{r bayesClassifier, echo=TRUE}
-
+```r
 bayesClassifier<-function(menClass, womenClass, document, menPrior, womenPrior){
   #gets counts of words in each class
   mCount<-nrow(menClass)
@@ -47,7 +43,7 @@ bayesClassifier<-function(menClass, womenClass, document, menPrior, womenPrior){
   menClass<-as.data.frame(table(menClass))
   womenClass<-as.data.frame(table(womenClass))
   #finds intersection of document data frame and the menClass and womenClass dataframes
-  intersectM<-menClass[is.element(menClass$menClass, intersect(quote_class$`unlist(x)`, menClass$menClass)),]
+  intersectM<-menClass[is.element(menClass$menClass, intersect(document$`unlist(x)`, menClass$menClass)),]
   intersectW<-womenClass[is.element(womenClass$womenClass, intersect(document$`unlist(x)`, womenClass$womenClass)),]
   #conditional probabilities of each intersecting word, this would be the place to add smoothing if desired in place of the 0s
   intersectM$Freq<-(intersectM$Freq+0)/(mCount+vocabCount+0)
@@ -61,42 +57,37 @@ bayesClassifier<-function(menClass, womenClass, document, menPrior, womenPrior){
   }
   return("Male")
 }
-
 ```
 I will tackle the textCleaner part first.  My goal will be to make the code read like "well written prose" to quote Uncle Bob.  What this means is that all the comments I have in the code are only necessary because I did a terrible job writing the code in the first place.
 
 First, I must write a test that the current code passes so that I know I didn't break anything while refactoring.  For that we are going to need the *testthat* library.
 
-```{r necessary_packages, echo=TRUE}
-
-install.packages('testthat')
+```r
+#install.packages('testthat')
 library(testthat)
-
 ```
 We also need a data frame made from the original function to test the new function against.  I've assigned it to a variable for simplicities sake.
-```{r variable_initialized, echo=TRUE}
 
+```r
 cleaned_test_file<-textCleaner('~/naive-bayes-classifier/refactor_test_file.txt')
-
 ```
 #### textCleaner unit test
 
-```{r textCleaner unit test, echo=TRUE}
 
+```r
 test_that('textCleaner cleans', {
   test_file<-'~/naive-bayes-classifier/refactor_test_file.txt'
   
   expect_that(textCleaner(test_file), equals(cleaned_test_file))
 })
-
 ```
 I ran the unit test against the original function to prove the unit test itself works.  The lack of an error means that I am ready to refactor.
 
-#### Refactored clean_text_file_and_return_data_frame function
-Here, I've broken out each of the seperate operations of the original code into their own function.
+#### Refactored textCleaner function
 
-```{r text_cleaner_refactored, echo=TRUE}
 
+```r
+# Here, I've broken out each of the seperate operations of the original code into their own function.
 remove_author<-function(file){
   regex_author_pattern<-"--\\s.*"
   cleaned_file<-base::gsub(regex_author_pattern, "", file)
@@ -122,6 +113,7 @@ clean<-function(file){
   return(cleaned_file)
 }
 
+# An argument could be made that I didn't have to break out all the cleaning steps to their own clean function but I decided to go all out
 clean_text_file_and_return_data_frame<-function(file){
   
   file<-base::scan(file, what="", sep="\n")
@@ -133,18 +125,17 @@ clean_text_file_and_return_data_frame<-function(file){
     
   return(x)
 }
-
 ```
+
 Now to use the test I wrote (and proved) earlier on the newly written function.
 
-```{r clean_text_file_and_return_data_frame unit test, echo=TRUE}
 
+```r
 test_that('textCleaner cleans', {
   test_file<-'~/naive-bayes-classifier/refactor_test_file.txt'
   
   expect_that(clean_text_file_and_return_data_frame(test_file), equals(cleaned_test_file))
 })
-
 ```
 Again, the lack of an error means that everything works.  Let's review:
 
@@ -159,15 +150,15 @@ As noted in the comment in the above *clean_text_file_and_return_data_frame* fun
 
 I have remedied that situation below.
 
-```{r clean_text_file_and_return_data_frame fixed, echo=TRUE}
 
-clean_text_file_and_return_data_frame<-function(file){  
-  file<-base::scan(file, what="", sep="\n")
-  cleaned_file<-clean(file)
+```r
+ #clean_text_file_and_return_data_frame<-function(file){
+  
+  #file<-base::scan(file, what="", sep="\n")
+  #cleaned_file<-clean(file)
     
-  return(cleaned_file)
-}
-
+  #return(cleaned_file)
+#}
 ```
 This code is much more readable and follows the single responsibility principle.  Now we need a whole new set of unit tests.
 
@@ -175,19 +166,21 @@ For the bayesClassifer function I am going to make lots of changes.  Not only am
 
 Just as before we first need a couple of unit test that work on the current code so that we can test the new code.  I've created two unit test text files to use as training data, one has a single female quote, the other a single male quote.  I will then use those same quotes as the test quote so that we are assured that we return Male, and Female when we want to. 
 
-
 #### bayesClassifier unit test
 
-```{r bayesClassifier unit test, echo=TRUE}
 
+```r
+# First our input data frames, using our new clean_text_file_and_return_data_frame function
 menClass<-clean_text_file_and_return_data_frame("~/naive-bayes-classifier/men_unit_test.txt")
 womenClass<-clean_text_file_and_return_data_frame("~/naive-bayes-classifier/women_unit_test.txt")
 
+#then I'm going to make the classifier output the string "Male"
 test_that('bayesClassifier classifies', {
   womenQuote<-clean_text_file_and_return_data_frame("~/naive-bayes-classifier/women_unit_test_quote.txt")  
   expect_that(bayesClassifier(menClass, womenClass, womenQuote, .5, .5), equals("Male"))
 })
 
+#second the string "Female"
 test_that('bayesClassifier classifies', {
   menQuote<-clean_text_file_and_return_data_frame("~/naive-bayes-classifier/men_unit_test_quote.txt")
   
@@ -198,11 +191,10 @@ And I have passing unit tests.  A smart observer here will realize that I am usi
 
 #### Refactored bayes_classifier function
 
-```{r bayes_classifier refactored, echo=TRUE}
 
+```r
 get_count<-function(df){
   return(nrow(df))
-
 }
 
 combine_dataframes_and_make_table<-function(df1, df2){
@@ -257,16 +249,20 @@ bayes_classifier<-function(men_train, women_train, quote_test, men_prior, women_
 }
 ```
 #### Now retest with the modified unit tests
-```{r bayes_classifier unit test modified, echo=TRUE}
 
+
+```r
+# First our input data frames, using our new clean_text_file_and_return_data_frame function
 men_train<-"~/naive-bayes-classifier/men_unit_test.txt"
 women_train<-"~/naive-bayes-classifier/women_unit_test.txt"
 
+#then I'm going to make the classifier output the string "Male"
 test_that('bayesClassifier classifies', {
   women_quote<-"~/naive-bayes-classifier/women_unit_test_quote.txt"  
   expect_that(bayes_classifier(men_train, women_train, women_quote, .5, .5), equals("Male"))
 })
 
+#second the string "Female"
 test_that('bayesClassifier classifies', {
   men_quote<-"~/naive-bayes-classifier/men_unit_test_quote.txt"
   expect_that(bayes_classifier(men_train, women_train, men_quote, .5, .5), equals("Female"))
