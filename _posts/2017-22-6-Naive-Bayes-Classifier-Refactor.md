@@ -4,7 +4,8 @@ author: "Tim Dunbar"
 date: "June 22 2017"
 ---
 ---------------
-### Naive Bayes Classifier *Refactor*
+
+## Naive Bayes Classifier *Refactor*
 
 As the title suggests this post will be a refactoring of the code from the previous post.  I'm doing this partly because I recently watched all the videos from Robert Martin's (Uncle Bob's) Clean Code series but also because I think refactoring code is a good way to learn about it.
 
