@@ -10,6 +10,7 @@ date: "July 4 2017"
 Benford's law is also called the first digit law, it's an observation about the frequency distribution of the most significant digits in any series of numbers.  It turns out that roughly 30% of the numbers should start with the number *1*, roughly 20% of the numbers should start with *2*, and so on. Benford's law is usually used as a kind of "canary" for fraud. In other words if the set of numbers in the dataset do not conform to Benford's law there might be some manipulation going on and further investigation is required.
 
 This is just a quick rundown of the probablility formula for Benford's law.  So for leading digit d such that 
+
 ```
 $$d\in\{1, 2, ..., 9\}$$
 ```
@@ -93,10 +94,6 @@ ggplot(benford_counts_firsts, aes(benford_counts_firsts$`benford_prep_df$first_d
   xlab("First Digit Counts") +
   ylab("Counts") +
   ggtitle("Benford's Law Analysis of Ghent Housing Data")
-```
-
-```
-## Warning: Ignoring unknown parameters: binwidth
 ```
 
 ![First Digits Frequency Distribution](/images/benfords_law_hist.png)<!-- -->
