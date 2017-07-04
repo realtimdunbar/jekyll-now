@@ -98,6 +98,6 @@ ggplot(benford_counts_firsts, aes(benford_counts_firsts$`benford_prep_df$first_d
 
 ![First Digits Frequency Distribution](/images/benfords_law_hist.png)<!-- -->
 
-##Conclusion
+## Conclusion
 
 This data set does not comply with Benford's law because more total assessed values begin with the number 3 then anything else and there are more 4s then there should be as well.  This is not to say that there is fraud happening here but there is something interesting that would require further investigation beyond the scope of this post.  However, most likely this is because Ghent is a mildly affluent neighborhood with a lot of expensive homes for the upper middle class folks.
