@@ -1,3 +1,11 @@
+<head>
+...
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+...
+</head>
+
 ---
 title: "Benford's Law - Ghent Housing Data"
 author: "Tim Dunbar"
@@ -11,11 +19,13 @@ Benford's law is also called the first digit law, it's an observation about the 
 
 This is just a quick rundown of the probablility formula for Benford's law.  So for leading digit d such that 
 
+{% raw %}
 $$d\in\{1, 2, ..., 9\}$$
+{% endraw %}
 
 The formulas is...
 
-<iframe src="http://mathurl.com/yahx5qra">formula</iframe>
+$$P(d)=\log_{10}(d + 1)-log_{10}(d)$$
 
 Because the log of the quotient is the difference of the logs and vice versa we can...
 
@@ -89,10 +99,10 @@ head(benford_counts_table_firsts, 9)
 
 ```r
 ggplot(benford_counts_firsts, aes(benford_counts_firsts$`benford_prep_df$first_digit`)) +
-  stat_count(binwidth=1, colour="black", fill="white") +
-  xlab("First Digit Counts") +
-  ylab("Counts") +
-  ggtitle("Benford's Law Analysis of Ghent Housing Data")
+stat_count(binwidth=1, colour="black", fill="white") +
+xlab("First Digit Counts") +
+ylab("Counts") +
+ggtitle("Benford's Law Analysis of Ghent Housing Data")
 ```
 
 ![First Digits Frequency Distribution](/images/benfords_law_hist.png)<!-- -->
