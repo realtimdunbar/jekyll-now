@@ -1,11 +1,3 @@
-<head>
-...
-<script type="text/javascript"
-src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-...
-</head>
-
 ---
 title: "Benford's Law - Ghent Housing Data"
 author: "Tim Dunbar"
