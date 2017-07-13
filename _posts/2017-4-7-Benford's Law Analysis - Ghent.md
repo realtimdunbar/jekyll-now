@@ -11,9 +11,7 @@ Benford's law is also called the first digit law, it's an observation about the 
 
 This is just a quick rundown of the probablility formula for Benford's law.  So for leading digit d such that 
 
-{% raw %}
-$$d\in\{1, 2, ..., 9\}$$
-{% endraw %}
+\\[ d\in\{1, 2, ..., 9\} \\]
 
 The formulas is...
 
