@@ -15,7 +15,7 @@ $$d\in\{1, 2, ..., 9\}$$
 
 The formulas is...
 
-<iframe>http://mathurl.com/yahx5qra</iframe>
+<iframe src="http://mathurl.com/yahx5qra"</iframe>
 
 Because the log of the quotient is the difference of the logs and vice versa we can...
 
