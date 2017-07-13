@@ -11,21 +11,24 @@ Benford's law is also called the first digit law, it's an observation about the 
 
 This is just a quick rundown of the probablility formula for Benford's law.  So for leading digit d such that 
 
-```
 $$d\in\{1, 2, ..., 9\}$$
-```
+
 The formulas is...
-```
-$$P(d)=\log_{10}(d + 1)-log_{10}(d)$$
-```
+
+$$
+\begin{align*}
+P(d)=\log_{10}(d + 1)-log_{10}(d)
+\end{align*}
+$$
+
 Because the log of the quotient is the difference of the logs and vice versa we can...
-```
+
 $$P(d)=\log_{10}(\frac{d + 1}d)$$
-```
+
 And finally...
-```
+
 $$P(d)=\log_{10}(1+\frac{1}d)$$
-```
+
 Now on with the fun stuff
 
 ## Administrative stuff, package loading, variables, etc.
