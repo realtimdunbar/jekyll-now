@@ -15,11 +15,7 @@ $$d\in\{1, 2, ..., 9\}$$
 
 The formulas is...
 
-$$
-\begin{align*}
-P(d)=\log_{10}(d + 1)-log_{10}(d)
-\end{align*}
-$$
+<iframe>http://mathurl.com/yahx5qra</iframe>
 
 Because the log of the quotient is the difference of the logs and vice versa we can...
 
