@@ -5,7 +5,7 @@ date: "August 8 2017"
 ---
 ---------------
 
-## Moran's I Analyis of Ghent Housing data
+## Moran's I Explanation
 
 Moran's I is a measurement of how spatial information might correlate with some other variable.  In this case I am comparing the Euclidean distance (from each other) of homes in the Ghent neighborhodd of Norfolk and their property values.  I didn't do a lot of cleaning of the data, preferring instead to get a baseline and to see how much the p value improved after cleaning.
 
@@ -55,6 +55,7 @@ xy.dist.inv[xy.dist.inv == Inf] <- 0
 Moran.I(xy$total, xy.dist.inv)
 ```
 As seen below the p value is higher then .05 so the null hypothesis is not confirmed.  There is a spatial correlation with property value.
+
 ``` r
 $observed
 [1] 0.001799266
