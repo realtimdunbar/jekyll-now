@@ -36,7 +36,7 @@ leaflet() %>%
   addTiles() %>%
   addCircleMarkers(lng=new_df$longitude, lat=new_df$latitude, weight=3, radius=3, opacity=.2, color=pal)
 ```
-
+![First Digits Frequency Distribution](/images/moransI.png)<!-- -->
 
 Finally I calculate the Moran's I of this dataset.  the below p value of 0.375 is not as high as I thought it should be.  It makes sense that like value homes will be close to each other, I mean it's not often that one sees a mansion next to a trailer park.  I will clean up the data and see if it can be improved.
 
