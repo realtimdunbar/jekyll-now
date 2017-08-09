@@ -4,7 +4,8 @@ author: "Tim Dunbar"
 date: "August 8 2017"
 ---
 ---------------
-#### Moran's I analyis of Ghent Housing data.
+
+## Moran's I Analyis of Ghent Housing data
 
 Moran's I is a measurement of how spatial information might correlate with some other variable.  In this case I am comparing the Euclidean distance (from each other) of homes in the Ghent neighborhodd of Norfolk and their property values.  I didn't do a lot of cleaning of the data, preferring instead to get a baseline and to see how much the p value improved after cleaning.
 
