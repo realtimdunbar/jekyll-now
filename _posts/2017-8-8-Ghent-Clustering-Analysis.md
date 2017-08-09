@@ -54,5 +54,19 @@ xy.dist.inv[xy.dist.inv == Inf] <- 0
 Moran.I(xy$total, xy.dist.inv)
 ```
 
+``` r
+##$observed
+##[1] 0.001799266
+
+##$expected
+##[1] -0.0004823927
+
+##$sd
+##[1] 0.002575867
+
+##$p.value
+##[1] 0.3757347
+```
+
 
 
