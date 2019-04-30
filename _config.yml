@@ -9,7 +9,7 @@ name: Tim Dunbar
 description: Data Science Enthusiast
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAADHAAAAJDg2MzkyMWFkLTkzMTktNDVlMi04YjVlLWU1YzFjM2RmYWRlZg.jpg
+avatar: https://avatars0.githubusercontent.com/u/4944535?s=400&u=32024982db399d9748afbeb1c85ad72f50b2971e&v=4
 
 #
 # Flags below are optional
@@ -23,10 +23,10 @@ footer-links:
   flickr:
   github: realtimdunbar
   instagram:
-  linkedin: realtimdunbar/
+  linkedin:
   pinterest:
   rss: realtimdunbar
-  twitter: realtimdunbar
+  twitter:
   stackoverflow: 
   youtube: # channel/<your_long_string> or user/<user-name>
   googleplus: u/0/+TimDunbar1176
